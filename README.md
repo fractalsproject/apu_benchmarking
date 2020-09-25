@@ -11,35 +11,29 @@ Both notebooks use the knn-search by query, hence a query set has to be created 
 
 
 attrs = {
+
         "algo": "float32_1board",
+        
         "batch_mode": False,
+        
         "best_search_time": total_search/10000,
+        
         "candidates": 1,
+        
         "expect_extra": False,
+        
         "name": "float32",
+        
         "run_count": 2,
+        
         "distance": "angular",
+        
         "count": 10,
+        
         'dataset': 'deep-image-96-angular'
+        
     }
- {   
-fn = "apu_float32_1_1"    
-f = h5py.File(fn, 'w')
-
-for k, v in attrs.items():
-        f.attrs[k] = v
-
-times = f.create_dataset('times', (len(timed),), 'f')
-    
-neighbors = f.create_dataset('neighbors', (len(neigh), 10), 'i')
-    
-distances = f.create_dataset('distances', (len(dist), 10), 'f')
-
-times = timed
-neighbors = neigh
-distances = dist
-             
-f.close()
-}
 
 These parameters will have to be adjusted according to the dataset you are benchmarking. 
+
+WARNING: as of 09/25/20 trying to benchmark on 1% of deep1b will result in a dataset size related error (/usr/local/bin/docker-entrypoint.sh: line 3:     6 Segmentation fault      (core dumped) ./server)
