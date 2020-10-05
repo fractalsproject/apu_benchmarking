@@ -47,7 +47,8 @@ print("Status: " + str(status))
 
 
 #dataset_id, result = gsi.import_dataset("/efs/data/qa/any_vision/dataset.npy")
-dataset_id, result = gsi.import_dataset("/efs/data/qa/any_vision/deep-image-96.npy")
+#dataset_id, result = gsi.import_dataset("/efs/data/qa/any_vision/deep-image-96.npy")
+dataset_id, result = gsi.import_dataset("/home/braden/ann-benchmarks/data/deep-image-96.npy")
 print("Dataset ID: " + str(dataset_id))
 print("Status: " + str(result))
 neural_matrix_path = "/efs/data/public/Daphna/AnyVision_NPHash_Weight_Files/any_vision_1589923812.533218__dim256_loss7_v3random_proxies_nlFalse_hns256.0_scale30_optimizerAdam_lr0.001_proxies5000_trainFalse_hidden2_tss100000000_merged_weights.npy"
@@ -58,7 +59,8 @@ neural_matrix_path = "/efs/data/public/Daphna/AnyVision_NPHash_Weight_Files/any_
 
 #create the queryset
 #fl = np.load('queries.npy')
-fl = np.load("/efs/data/qa/any_vision/deep1b_queries.npy")
+#fl = np.load("/efs/data/qa/any_vision/deep1b_queries.npy")
+fl = np.load("/home/braden/APU_testing/deep1b_queries.npy")
 
 #testing query's working
 #search = gsi.Search()
