@@ -45,22 +45,29 @@ print("Status: " + str(status))
 
 # In[ ]:
 
+import time
 
+print("import dataset...")
+print(time.ctime())
 #dataset_id, result = gsi.import_dataset("/efs/data/qa/any_vision/dataset.npy")
-#dataset_id, result = gsi.import_dataset("/efs/data/qa/any_vision/deep-image-96.npy")
-dataset_id, result = gsi.import_dataset("/home/braden/ann-benchmarks/data/deep-image-96.npy")
+dataset_id, result = gsi.import_dataset("/efs/data/qa/any_vision/deep-image-96.npy")
+#dataset_id, result = gsi.import_dataset("/home/braden/ann-benchmarks/data/deep-image-96.npy")
 print("Dataset ID: " + str(dataset_id))
 print("Status: " + str(result))
 neural_matrix_path = "/efs/data/public/Daphna/AnyVision_NPHash_Weight_Files/any_vision_1589923812.533218__dim256_loss7_v3random_proxies_nlFalse_hns256.0_scale30_optimizerAdam_lr0.001_proxies5000_trainFalse_hidden2_tss100000000_merged_weights.npy"
-
+print(time.ctime())
 
 # In[ ]:
 
 
+print("queries npload...")
+print(time.ctime())
 #create the queryset
 #fl = np.load('queries.npy')
-#fl = np.load("/efs/data/qa/any_vision/deep1b_queries.npy")
-fl = np.load("/home/braden/APU_testing/deep1b_queries.npy")
+fl = np.load("/efs/data/qa/any_vision/deep1b_queries.npy")
+#fl = np.load("/home/braden/APU_testing/deep1b_queries.npy")
+print("done load...")
+print(time.ctime())
 
 #testing query's working
 #search = gsi.Search()
@@ -93,15 +100,19 @@ neigh = []
 dist = []
 
 print("About to load data...")
+print(time.ctime())
 status = gsi.load_data(alloc_id, dataset_id, neural_matrix_path, hamming_k=ham, normalize=False, typical_nqueries=1, max_nqueries=1)
 print("Done loading data...")
+print(time.ctime())
 print(status)
 total_search = 0
 for i in range(len(fl)):
     
     print("About to do a query...")
+    print(time.ctime())
     distance, indices, search_time, status = search.knn_composite_cosine_by_queries(alloc_id, dataset_id, fl[i])
     print("Done with the query...")
+    print(time.ctime())
     
     timed.append(search_time)
     neigh.append(indices)
